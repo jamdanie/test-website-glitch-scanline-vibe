@@ -1,63 +1,85 @@
-// Edit this array only
-const PROJECTS = [
-  {
-    title: "Simple Hero + Image",
-    tag: "LAYOUT",
-    desc: "A clean hero with a Gundam backdrop and a readable gradient overlay.",
-    links: [
-      { label: "About", href: "#about" },
-      { label: "Top", href: "#top" }
-    ]
-  },
-  {
-    title: "Card Grid System",
-    tag: "UI",
-    desc: "Basic 2-column grid with hover lift. Minimal, modern, and easy to expand.",
-    links: [
-      { label: "Work", href: "#work" },
-      { label: "Contact", href: "#contact" }
-    ]
-  },
-  {
-    title: "No Frameworks",
-    tag: "PURE",
-    desc: "Only HTML/CSS/JS. Built as a UW student test layout for GitHub Pages.",
-    links: [
-      { label: "Email", href: "mailto:jadanie@uw.edu" }
-    ]
-  },
-  {
-    title: "Color Pops",
-    tag: "STYLE",
-    desc: "Small gradients and accents to keep it eye-catching without being busy.",
-    links: [
-      { label: "Top", href: "#top" }
-    ]
-  }
+// Simple page switching
+const links = document.querySelectorAll(".nav-link");
+const pageHome = document.getElementById("page-home");
+const pageAbout = document.getElementById("page-about");
+
+links.forEach(btn => {
+  btn.addEventListener("click", () => {
+    links.forEach(b => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+
+    const page = btn.dataset.page;
+    if (page === "about") {
+      pageHome.classList.add("is-hidden");
+      pageAbout.classList.remove("is-hidden");
+    } else {
+      pageAbout.classList.add("is-hidden");
+      pageHome.classList.remove("is-hidden");
+    }
+  });
+});
+
+// Kanji overlay generation
+const overlay = document.querySelector(".kanji-overlay");
+
+// Feel free to swap these for the exact vibe you want
+const KANJI = [
+  "機","神","鋼","刃","雷","影","白","青","赤","零","光","電",
+  "戦","夢","蒼","閃","界","空","星","心","道","形","静","速"
 ];
 
-const projectsEl = document.querySelector("#projects");
+function rand(min, max) { return Math.random() * (max - min) + min; }
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-projectsEl.innerHTML = PROJECTS.map(p => `
-  <article class="card">
-    <div class="card-top">
-      <h3>${escapeHtml(p.title)}</h3>
-      <span class="tag">${escapeHtml(p.tag)}</span>
-    </div>
-    <p>${escapeHtml(p.desc)}</p>
-    <div class="links">
-      ${(p.links || []).map(l => `<a href="${l.href}">${escapeHtml(l.label)}</a>`).join("")}
-    </div>
-  </article>
-`).join("");
+function makeColumn(index) {
+  const col = document.createElement("div");
+  col.className = "kanji-col";
 
-document.querySelector("#year").textContent = String(new Date().getFullYear());
+  // spread columns across the screen
+  const x = rand(4, 96);
+  col.style.left = `${x}vw`;
 
-function escapeHtml(str="") {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+  // timing variety
+  const duration = rand(10, 22); // seconds
+  col.style.animationDuration = `${duration}s`;
+
+  // stagger start so they don't all line up
+  const delay = rand(-20, 0);
+  col.style.animationDelay = `${delay}s`;
+
+  // build the vertical stack
+  const count = Math.floor(rand(10, 18));
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement("span");
+    s.className = "kanji";
+    s.textContent = pick(KANJI);
+
+    // occasional accent pops
+    const r = Math.random();
+    if (r < 0.08) s.classList.add("hot");
+    else if (r < 0.16) s.classList.add("cold");
+
+    col.appendChild(s);
+  }
+
+  // slight per-column opacity variance
+  col.style.opacity = `${rand(0.10, 0.22)}`;
+
+  overlay.appendChild(col);
 }
+
+function initKanji() {
+  // mobile: fewer columns
+  const isMobile = window.matchMedia("(max-width: 700px)").matches;
+  const columns = isMobile ? 7 : 12;
+
+  overlay.innerHTML = "";
+  for (let i = 0; i < columns; i++) makeColumn(i);
+}
+
+initKanji();
+window.addEventListener("resize", () => {
+  // debounce-ish
+  clearTimeout(window.__kanjiT);
+  window.__kanjiT = setTimeout(initKanji, 180);
+});
