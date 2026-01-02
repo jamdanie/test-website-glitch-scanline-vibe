@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>UW Layout Lab</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>UW Layout Lab — Gundam</title>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
-      <span class="dot"></span>
+      <span class="brand-dot"></span>
       <span class="brand-text">UW Layout Lab</span>
     </div>
 
@@ -22,45 +22,47 @@
   <!-- Kanji overlay -->
   <div class="kanji-overlay" aria-hidden="true"></div>
 
-  <main class="stage">
-    <section class="panel">
-      <div class="panel-inner" id="page-home">
-        <p class="eyebrow">デザイン / Layout Study</p>
-        <h1 class="title">Clean UI. Mecha Mood.</h1>
-        <p class="subtitle">
-          Minimal half-page layout with subtle motion + vertical kanji.
-        </p>
+  <main class="wrap">
+    <section class="hero" aria-label="Gundam hero background">
+      <div class="hero-glow" aria-hidden="true"></div>
 
-        <div class="cta-row">
-          <a class="cta" href="#" id="primaryCta">View</a>
-          <a class="cta ghost" href="#" id="secondaryCta">GitHub</a>
-        </div>
-
-        <p class="micro">
-          Theme study • no frameworks • hosted on GitHub Pages
-        </p>
-      </div>
-
-      <div class="panel-inner is-hidden" id="page-about">
-        <p class="eyebrow">About</p>
-        <h2 class="title h2">Simple.</h2>
-        <p class="subtitle">
-          I’m a UW student testing layout designs.
-        </p>
-
-        <div class="about-card">
-          <p>
-            This page is a small UI lab: clean typography, a controlled palette,
-            and lightweight animation.
+      <div class="card">
+        <div id="page-home">
+          <p class="eyebrow">デザイン / LAYOUT STUDY</p>
+          <h1 class="title">Clean UI. Gundam Mood.</h1>
+          <p class="subtitle">
+            Minimal half-page layout with subtle motion + vertical kanji.
           </p>
+
+          <div class="cta-row">
+            <a class="cta primary" href="#" id="primaryCta">View</a>
+            <a class="cta ghost" href="https://github.com/jamdanie" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+
+          <p class="micro">UW student layout study • HTML/CSS/JS • GitHub Pages</p>
+        </div>
+
+        <div id="page-about" class="is-hidden">
+          <p class="eyebrow">About</p>
+          <h2 class="title h2">Simple.</h2>
+          <p class="subtitle">I’m a UW student testing layout designs.</p>
+
+          <div class="about">
+            <p>
+              This is a small UI lab focused on composition, hierarchy, and motion.
+              The theme is a Gundam-inspired palette and clean sci-fi UI.
+            </p>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section class="hero" role="img" aria-label="Mecha themed hero image"></section>
+      <footer class="corner">
+        <span class="chip">RX / UI LAB</span>
+        <span class="chip soft">v1.0</span>
+      </footer>
+    </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
-
