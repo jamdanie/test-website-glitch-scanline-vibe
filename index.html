@@ -3,101 +3,64 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0f18" />
-  <title>Test Layout — Gundam</title>
-  <meta name="description" content="Test layout. UW student exploring experimental web development." />
+  <title>UW Layout Lab</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
   <header class="topbar">
-    <a class="logo" href="#top">
-      <span class="dot" aria-hidden="true"></span>
-      <span>Test Layout</span>
-    </a>
+    <div class="brand">
+      <span class="dot"></span>
+      <span class="brand-text">UW Layout Lab</span>
+    </div>
 
     <nav class="nav">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a class="btn" href="#contact">Contact</a>
+      <button class="nav-link is-active" data-page="home">Home</button>
+      <button class="nav-link" data-page="about">About</button>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
+  <!-- Kanji overlay -->
+  <div class="kanji-overlay" aria-hidden="true"></div>
 
-      <div class="wrap hero-inner">
-        <p class="kicker">UW student • experimental web development</p>
-
-        <h1 class="title">
-          Gundam-inspired
-          <span class="title-pop">test layout</span>
-        </h1>
-
-        <p class="lead">
-          This is a <strong>test layout</strong>. I’m a University of Washington student exploring
-          clean typography, simple layout systems, and modern UI feel—built with only HTML/CSS/JS.
+  <main class="stage">
+    <section class="panel">
+      <div class="panel-inner" id="page-home">
+        <p class="eyebrow">デザイン / Layout Study</p>
+        <h1 class="title">Clean UI. Mecha Mood.</h1>
+        <p class="subtitle">
+          Minimal half-page layout with subtle motion + vertical kanji.
         </p>
 
-        <div class="hero-actions">
-          <a class="btn primary" href="#work">See cards</a>
-          <a class="btn ghost" href="#about">What is this?</a>
+        <div class="cta-row">
+          <a class="cta" href="#" id="primaryCta">View</a>
+          <a class="cta ghost" href="#" id="secondaryCta">GitHub</a>
         </div>
 
-        <div class="mini-row">
-          <div class="mini">
-            <span class="mini-label">Build</span>
-            <span class="mini-value">GitHub Pages</span>
-          </div>
-          <div class="mini">
-            <span class="mini-label">Stack</span>
-            <span class="mini-value">HTML / CSS / JS</span>
-          </div>
-          <div class="mini">
-            <span class="mini-label">Purpose</span>
-            <span class="mini-value">visual test</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="work" class="section wrap">
-      <div class="section-head">
-        <h2>Selected test cards</h2>
-        <p>Edit one array in <code>app.js</code> to update these.</p>
-      </div>
-
-      <div class="grid" id="projects" aria-live="polite"></div>
-    </section>
-
-    <section id="about" class="section wrap">
-      <div class="about">
-        <h2>About</h2>
-        <p>
-          A simple, clean portfolio shell with an anime-inspired hero image. No frameworks, no external services.
-          Just a UW student experimenting with modern web layout.
+        <p class="micro">
+          Theme study • no frameworks • hosted on GitHub Pages
         </p>
       </div>
-    </section>
 
-    <footer id="contact" class="footer wrap">
-      <div class="footer-row">
-        <div>
-          <p class="footer-title">Contact</p>
-          <p class="footer-sub">This is a test layout — built for GitHub Pages.</p>
-        </div>
+      <div class="panel-inner is-hidden" id="page-about">
+        <p class="eyebrow">About</p>
+        <h2 class="title h2">Simple.</h2>
+        <p class="subtitle">
+          I’m a UW student testing layout designs.
+        </p>
 
-        <div class="footer-actions">
-          <a class="btn ghost" href="#top">Top ↑</a>
-          <a class="btn primary" href="mailto:jadanie@uw.edu">jadanie@uw.edu</a>
+        <div class="about-card">
+          <p>
+            This page is a small UI lab: clean typography, a controlled palette,
+            and lightweight animation.
+          </p>
         </div>
       </div>
+    </section>
 
-      <p class="fineprint">© <span id="year"></span> • Test Layout • UW student</p>
-    </footer>
+    <section class="hero" role="img" aria-label="Mecha themed hero image"></section>
   </main>
 
   <script src="app.js"></script>
 </body>
 </html>
+
