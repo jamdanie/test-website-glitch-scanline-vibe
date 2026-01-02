@@ -1,11 +1,8 @@
 :root{
-  /* Gundam-inspired palette */
-  --bg0:#05070c;
-  --navy:#0b1a33;
-  --panel: rgba(8, 12, 20, .62);
+  --bg:#05070c;
 
-  --text: rgba(255,255,255,.90);
-  --muted: rgba(255,255,255,.62);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.65);
   --stroke: rgba(255,255,255,.12);
 
   --red: #ff2b3a;
@@ -23,52 +20,50 @@ body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   color: var(--text);
-  background: var(--bg0); /* CLEAN background */
+  background: var(--bg);
   overflow-x:hidden;
 }
 
-/* ───────────────── Top Bar ───────────────── */
+/* ───────── Topbar (centered nav) ───────── */
 .topbar{
   position: sticky;
   top:0;
   z-index:10;
   display:flex;
-  justify-content:space-between;
+  justify-content:center;  /* center the nav */
   align-items:center;
   padding: 14px 18px;
-  background: rgba(6,8,14,.55);
+  background: rgba(6,8,14,.70);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--stroke);
 }
 
-.brand{ display:flex; gap:10px; align-items:center; }
-.brand-dot{
-  width:10px; height:10px; border-radius:999px;
-  background: linear-gradient(135deg, var(--red), var(--teal));
-  box-shadow: 0 0 18px rgba(47,243,209,.25);
-}
-.brand-text{ font-weight: 680; letter-spacing:.2px; }
-
 .nav{ display:flex; gap:10px; }
+
 .nav-link{
-  background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
   color: var(--muted);
-  padding: 8px 14px;
+  padding: 10px 14px;
   border-radius: 999px;
   cursor:pointer;
+  transition: transform .2s ease, background .2s ease, color .2s ease;
 }
-.nav-link.is-active{ color: var(--text); }
+.nav-link:hover{ transform: translateY(-1px); color: var(--text); }
+.nav-link.is-active{
+  color: var(--text);
+  background: rgba(255,255,255,.10);
+}
 
-/* ───────────────── Layout ───────────────── */
+/* ───────── Main wrap (center hero perfectly) ───────── */
 .wrap{
   min-height: calc(100vh - 58px);
   display:grid;
-  place-items:center;
+  place-items:center;      /* hard center */
   padding: 24px;
 }
 
-/* ───────────────── Hero (Gundam focus) ───────────────── */
+/* ───────── Hero (single focal element) ───────── */
 .hero{
   width: min(1180px, 96vw);
   height: min(690px, 82vh);
@@ -86,17 +81,19 @@ body{
     url("./assets/gundam.png") center / cover no-repeat;
 }
 
-/* subtle HUD glow */
+/* subtle glow only inside hero */
 .hero-glow{
   position:absolute;
   inset:0;
   pointer-events:none;
   background:
-    radial-gradient(500px 420px at 20% 70%, rgba(255,43,58,.12), transparent 60%),
-    radial-gradient(600px 420px at 75% 25%, rgba(47,243,209,.12), transparent 65%);
+    radial-gradient(500px 420px at 18% 70%, rgba(255,43,58,.12), transparent 60%),
+    radial-gradient(620px 440px at 78% 25%, rgba(47,243,209,.12), transparent 65%),
+    radial-gradient(700px 520px at 55% 92%, rgba(255,210,74,.08), transparent 70%);
+  opacity: .75;
 }
 
-/* ───────────────── Kanji (INSIDE hero only) ───────────────── */
+/* ───────── Kanji overlay (ONLY inside hero) ───────── */
 .kanji-overlay{
   position:absolute;
   inset:0;
@@ -125,8 +122,9 @@ body{
   display:flex;
   flex-direction:column;
   gap:10px;
-  opacity:.15;
+  opacity:.16;
   animation: driftDown linear infinite;
+  filter: drop-shadow(0 0 10px rgba(47,243,209,.08));
 }
 
 .kanji{
@@ -135,16 +133,20 @@ body{
   color: rgba(255,255,255,.85);
   user-select:none;
 }
+.kanji.red{ color: rgba(255,43,58,.90); }
+.kanji.teal{ color: rgba(47,243,209,.92); }
+.kanji.yellow{ color: rgba(255,210,74,.92); }
 
 @keyframes driftDown{
   from{ transform: translateY(0); }
   to{ transform: translateY(170%); }
 }
 
-/* ───────────────── Card ───────────────── */
+/* ───────── Card (centered content; placed lower-left) ───────── */
 .card{
   position:absolute;
-  left: 38%;
+  z-index:3;
+  left: 36%;
   top: 70%;
   transform: translate(-50%, -50%);
   width: min(560px, 88vw);
@@ -159,16 +161,18 @@ body{
 @media (max-width: 900px){
   .card{
     left:50%;
-    top:60%;
+    top:64%;
   }
 }
 
+/* Center BOTH Home and About inside the card */
 .card > div{
   text-align:center;
 }
 
-/* ───────────────── Typography ───────────────── */
+/* Typography */
 .eyebrow{
+  margin:0 0 10px;
   font-size:12px;
   letter-spacing:.24em;
   text-transform:uppercase;
@@ -176,41 +180,52 @@ body{
 }
 
 .title{
-  font-size:36px;
-  margin:6px 0 8px;
+  margin:0 0 10px;
+  font-size: 36px;
+  line-height:1.08;
 }
+.title.h2{ font-size: 28px; }
 
 .subtitle{
-  font-size:15px;
+  margin:0 0 16px;
   color: var(--muted);
+  font-size: 15.5px;
+  line-height:1.55;
 }
 
 .micro{
+  margin: 10px 0 0;
   font-size:12px;
-  color: rgba(255,255,255,.5);
+  color: rgba(255,255,255,.50);
 }
 
-/* ───────────────── Buttons ───────────────── */
+/* Buttons */
 .cta-row{
   display:flex;
   justify-content:center;
   gap:10px;
   margin-top:12px;
+  flex-wrap:wrap;
 }
 
 .cta{
-  padding:10px 14px;
-  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 14px;
+  border-radius: 12px;
   border:1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.06);
   color: var(--text);
   text-decoration:none;
+  transition: transform .2s ease, filter .2s ease;
 }
+.cta:hover{ transform: translateY(-1px); filter: brightness(1.06); }
 
 .cta.primary{
   background: linear-gradient(135deg, var(--yellow), var(--teal));
-  color:#000;
+  color:#0b0d12;
 }
 
-/* hide sections */
+/* Hide sections */
 .is-hidden{ display:none; }
