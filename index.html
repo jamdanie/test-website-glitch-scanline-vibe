@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#07090f" />
+  <title>Test Layout — UW Student Experimental Web Dev</title>
+  <meta name="description" content="Test layout portfolio. UW student exploring experimental web development." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- ambient cursor glow -->
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Home">
+      <span class="brand-mark">JD</span>
+      <span class="brand-text">test layout</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="pill">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <div class="hero-left">
+          <p class="kicker">
+            UW student • experimental web dev • 2026
+          </p>
+
+          <h1 class="title">
+            clean grid.
+            <span class="title-pop">anime energy.</span>
+            subtle motion.
+          </h1>
+
+          <p class="lead">
+            This is a <strong>test layout</strong>. I’m a University of Washington student exploring
+            modern web design patterns—typography, motion, and interactive UI systems.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#work">
+              View test cards
+              <span aria-hidden="true">↳</span>
+            </a>
+            <a class="btn ghost" href="#about">What is this?</a>
+          </div>
+
+          <div class="meta-row" role="list">
+            <div class="meta" role="listitem">
+              <span class="meta-label">Focus</span>
+              <span class="meta-value">UI systems + micro-interactions</span>
+            </div>
+            <div class="meta" role="listitem">
+              <span class="meta-label">Stack</span>
+              <span class="meta-value">HTML / CSS / JS (no frameworks)</span>
+            </div>
+            <div class="meta" role="listitem">
+              <span class="meta-label">Style</span>
+              <span class="meta-value">dark premium + color pops</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-right" aria-label="Highlights">
+          <div class="panel">
+            <div class="panel-top">
+              <span class="chip">LIVE</span>
+              <span class="panel-title">motion + grid tests</span>
+            </div>
+
+            <div class="stat-grid">
+              <div class="stat">
+                <span class="stat-num" data-count="12">0</span>
+                <span class="stat-label">components prototyped</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num" data-count="3">0</span>
+                <span class="stat-label">layouts explored</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num" data-count="1">0</span>
+                <span class="stat-label">goal: eye-catching</span>
+              </div>
+              <div class="stat">
+                <span class="stat-num" data-count="0">0</span>
+                <span class="stat-label">external deps</span>
+              </div>
+            </div>
+
+            <div class="panel-footer">
+              <div class="pulse" aria-hidden="true"></div>
+              <p class="mini">
+                Tip: replace <code>/assets/gundam.jpg</code> with your wallpaper for the full vibe.
+              </p>
+            </div>
+          </div>
+
+          <div class="ticker" aria-hidden="true">
+            <div class="ticker-track">
+              <span>UW STUDENT • TEST LAYOUT • EXPERIMENTAL WEB DEV • DARK PREMIUM • COLOR POPS •</span>
+              <span>UW STUDENT • TEST LAYOUT • EXPERIMENTAL WEB DEV • DARK PREMIUM • COLOR POPS •</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="section-head">
+        <h2 class="section-title">Selected test cards</h2>
+        <p class="section-sub">
+          Data-driven cards (edit one JS array). Hover to preview. Small animations—big feel.
+        </p>
+      </div>
+
+      <div class="work-grid" id="projects" aria-live="polite"></div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="about-card">
+        <h2 class="section-title">About this page</h2>
+        <p class="section-sub">
+          A compact “half-page” portfolio shell inspired by modern grid/typography-heavy layouts and glitchy energy,
+          built as an experimental UI playground. :contentReference[oaicite:2]{index=2}
+        </p>
+
+        <div class="about-split">
+          <div class="about-box">
+            <h3>What it is</h3>
+            <p>
+              A <strong>test layout</strong> with bold type, Gundam-themed backdrop, smooth color pops, and subtle UI motion.
+            </p>
+          </div>
+          <div class="about-box">
+            <h3>What it isn’t</h3>
+            <p>
+              Not a full résumé site. Not a framework showcase. No external services. Just clean HTML/CSS/JS.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="footer">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-title">Contact</p>
+          <p class="footer-sub">If you’re viewing this, it worked: GitHub Pages is live.</p>
+        </div>
+
+        <div class="footer-actions">
+          <a class="btn ghost" href="#top">Back to top ↑</a>
+          <a class="btn primary" href="mailto:jadanie@uw.edu">jadanie@uw.edu</a>
+        </div>
+      </div>
+
+      <p class="fineprint">
+        © <span id="year"></span> • Test Layout • UW student exploring experimental web development
+      </p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
